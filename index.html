@@ -359,34 +359,7 @@
       }
     });
 
-    // Submissão do formulário
-    document.getElementById('energyForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      var form = e.target;
-      var formData = new FormData(form);
-      var errorDiv = document.getElementById('formError');
-      errorDiv.classList.add('hidden');
-      errorDiv.textContent = '';
-      // URL correta do webhook n8n
-      var webhookUrl = 'https://n8n.srv1054123.hstgr.cloud/webhook/4a722b38-cd9b-4cfe-868e-993dba733db9';
-      try {
-        var response = await fetch(webhookUrl, {
-          method: 'POST',
-          body: formData
-        });
-        if (response.ok) {
-          alert('Formulário enviado com sucesso!');
-          form.reset();
-          document.getElementById('camposPJ').classList.add('hidden');
-        } else {
-          errorDiv.textContent = 'Erro ao enviar formulário. Tente novamente.';
-          errorDiv.classList.remove('hidden');
-        }
-      } catch (err) {
-        errorDiv.textContent = 'Erro de conexão. Tente novamente.';
-        errorDiv.classList.remove('hidden');
-      }
-    });
+    // ...existing code...
   </script>
 </body>
 </html>
