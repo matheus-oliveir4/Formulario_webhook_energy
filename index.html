@@ -367,8 +367,8 @@
       var errorDiv = document.getElementById('formError');
       errorDiv.classList.add('hidden');
       errorDiv.textContent = '';
-      // Substitua pela URL do seu webhook n8n
-      var webhookUrl = 'COLE_AQUI_A_URL_DO_SEU_WEBHOOK_N8N';
+      // URL correta do webhook n8n
+      var webhookUrl = 'https://n8n.srv1054123.hstgr.cloud/webhook/4a722b38-cd9b-4cfe-868e-993dba733db9';
       try {
         var response = await fetch(webhookUrl, {
           method: 'POST',
