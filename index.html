@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contratos Energy</title>
+  <style>
+    :root {
+      --font-family: 'Open Sans', sans-serif;
+      --font-weight-normal: 400;
+      --font-weight-bold: 600;
+      --font-size-body: 0.95rem;
+      --font-size-label: 1rem;
+      --font-size-test-notice: 0.9rem;
+      --font-size-input: 1rem;
+      --font-size-header: 1.5rem; 
+      --font-size-paragraph: 1rem;
+      --font-size-link: 0.9rem;
+      --font-size-error: 0.9rem;
+      --font-size-html-h1: 2rem; 
+      --font-size-html-h2: 1.5rem;
+      --font-size-html-h3: 1.2rem; 
+      --font-size-html-h4: 1rem;
+      --font-size-html-h5: 0.9rem;
+      --font-size-html-h6: 0.8rem;
+      --font-size-subheader: 1rem;
+      /* Cores da logo */
+      --color-primary: #1cc3cb; /* azul/turquesa */
+      --color-secondary: #ffd600; /* amarelo */
+      --color-background: #fbfcfe;
+      --color-test-notice-text: var(--color-primary);
+      --color-test-notice-bg: #fefaf6;
+      --color-test-notice-border: var(--color-primary);
+      --color-card-bg: #ffffff;
+      --color-card-border: var(--color-primary);
+      --color-card-shadow: rgba(99, 77, 255, 0.06);
+      --color-link: #1cc3cb;
+      --color-header: #1cc3cb;
+      --color-label: #555555;
+      --color-input-border: #dbdfe7;
+      --color-input-text: #71747A;
+      --color-focus-border: var(--color-primary);
+      --color-submit-btn-bg: var(--color-primary);
+      --color-submit-btn-text: #ffffff;
+      --color-error: #ea1f30;
+      --color-required: #ffd600;
+      --color-clear-button-bg: #7e8186;
+      --color-html-text: #555;
+      --color-html-link: #ffd600;
+      --color-header-subtext: #ffd600;
+      --border-radius-card: 8px;
+      --border-radius-input: 6px;
+      --border-radius-clear-btn: 50%;
+      --card-border-radius: 8px;
+      --padding-container-top: 10px;
+      --padding-card: 15px;
+      --padding-test-notice-vertical: 12px;
+      --padding-test-notice-horizontal: 24px;
+      --margin-bottom-card: 16px;
+      --padding-form-input: 12px;
+      --card-padding: 24px;
+      --card-margin-bottom: 16px;
+      --container-width: min(660px, 95vw);
+      --submit-btn-height: 48px;
+      --checkbox-size: 18px;
+      --box-shadow-card: 0px 4px 16px 0px var(--color-card-shadow);
+      --opacity-placeholder: 0.5;
+    }
+    body {
+      font-family: var(--font-family);
+      background: var(--color-background);
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: var(--container-width);
+      margin: 0 auto;
+      padding-top: var(--padding-container-top);
+      max-width: 660px;
+    }
+    .card {
+      background: var(--color-card-bg);
+      border: 1px solid var(--color-card-border);
+      border-radius: var(--border-radius-card);
+      box-shadow: var(--box-shadow-card);
+      padding: var(--padding-card);
+      margin-bottom: var(--card-margin-bottom);
+      box-sizing: border-box;
+    }
+    h1 {
+      font-size: var(--font-size-header);
+      color: var(--color-header);
+      margin-bottom: 0.5em;
+    }
+    label {
+      font-size: var(--font-size-label);
+      color: var(--color-label);
+      font-weight: var(--font-weight-bold);
+      display: block;
+      margin-top: 1em;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: var(--padding-form-input);
+      margin-top: 0.25em;
+      margin-bottom: 0.5em;
+      border: 1px solid var(--color-input-border);
+      border-radius: var(--border-radius-input);
+      font-size: var(--font-size-input);
+      color: var(--color-input-text);
+      box-sizing: border-box;
+      background: #fff;
+      transition: border 0.2s, box-shadow 0.2s;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--color-focus-border);
+      outline: none;
+    }
+    .required {
+      color: var(--color-required);
+      margin-left: 0.25em;
+    }
+    .submit-btn {
+      background: var(--color-submit-btn-bg);
+      color: var(--color-submit-btn-text);
+      border: none;
+      border-radius: var(--border-radius-input);
+      font-size: var(--font-size-label);
+      font-weight: var(--font-weight-bold);
+      height: var(--submit-btn-height);
+      width: 100%;
+      margin-top: 1.5em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .submit-btn:hover {
+      background: #009fa3;
+    }
+    .hidden {
+      display: none;
+    }
+    .error {
+      color: var(--color-error);
+      font-size: var(--font-size-error);
+      margin-bottom: 1em;
+    }
+    @media (max-width: 900px) {
+      .container {
+        max-width: 98vw;
+        padding-left: 2vw;
+        padding-right: 2vw;
+      }
+      .card {
+        padding: 12px;
+      }
+      label {
+        font-size: 0.98rem;
+      }
+      input, select, textarea {
+        font-size: 0.98rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      :root {
+        --font-size-header: 1.1rem;
+        --font-size-label: 0.95rem;
+        --font-size-input: 0.95rem;
+        --card-padding: 10px;
+        --padding-card: 10px;
+      }
+      .container {
+        padding-left: 1vw;
+        padding-right: 1vw;
+      }
+      .card {
+        padding: 8px;
+      }
+      label {
+        font-size: 0.95rem;
+      }
+      input, select, textarea {
+        font-size: 0.95rem;
+      }
+      h1 {
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .container {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .card {
+        padding: 4px;
+      }
+      label {
+        font-size: 0.9rem;
+      }
+      input, select, textarea {
+        font-size: 0.9rem;
+      }
+      h1 {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form id="energyForm" class="card" enctype="multipart/form-data">
+      <h1 style="color: var(--color-primary);">Contratos Energy</h1>
+      <p style="color: var(--color-primary); font-weight: bold; display: inline-block;">Preencha com Atenção.</p>
+      <label for="tipoCliente">Tipo de Cliente <span class="required">*</span></label>
+      <select id="tipoCliente" name="tipoCliente" required>
+        <option value="">Selecione</option>
+        <option value="Pessoa Fisica">Pessoa Física</option>
+        <option value="Pessoa Juridica">Pessoa Jurídica</option>
+      </select>
+      <div id="alertaPJ" class="card" style="background: var(--color-test-notice-bg); border: 1px solid var(--color-test-notice-border); color: var(--color-html-text);">
+        <span>Observação Sobre Contrato PJ<br></span>
+        <span>Só se deve preencher os campos <strong>Representante</strong>, <strong>Local da usina</strong> e <strong>CPF/CNPJ Representante</strong> se e somente se o tipo de cliente for <strong>Pessoa Jurídica</strong>. Demais campos podem ser preenchidos normalmente.<br>
+        Se o contrato for do tipo <strong>Pessoa Física</strong>, basta preencher do campo <strong>Nome</strong> em diante.</span>
+      </div>
+      <div id="camposPJ" class="hidden">
+        <label for="representante">Representante</label>
+        <input type="text" id="representante" name="representante" placeholder="Representante em caso de PJ">
+        <label for="cpfCnpjRepresentante">CPF ou CNPJ Representante</label>
+        <input type="text" id="cpfCnpjRepresentante" name="cpfCnpjRepresentante" placeholder="CPF/CNPJ Representante em caso de PJ">
+        <label for="localUsina">Local da usina</label>
+        <input type="text" id="localUsina" name="localUsina" placeholder="Local de instalação em caso de PJ">
+      </div>
+      <label for="nome">Nome <span class="required">*</span></label>
+      <input type="text" id="nome" name="nome" placeholder="Nome do cliente" required>
+      <label for="cpfCnpj">CPF ou CNPJ <span class="required">*</span></label>
+      <input type="text" id="cpfCnpj" name="cpfCnpj" placeholder="CPF ou CNPJ do cliente" required>
+      <label for="rg">RG <span class="required">*</span></label>
+      <input type="text" id="rg" name="rg" placeholder="RG do cliente" required>
+      <label for="orgaoEmissor">Orgão Emissor <span class="required">*</span></label>
+      <input type="text" id="orgaoEmissor" name="orgaoEmissor" placeholder="Órgão emissor do RG" required>
+      <label for="estadoCivil">Estado Civil <span class="required">*</span></label>
+      <select id="estadoCivil" name="estadoCivil" required>
+        <option value="">Selecione</option>
+        <option>Solteiro(a)</option>
+        <option>Casado(a)</option>
+        <option>Viúvo(a)</option>
+        <option>Divorciado(a)</option>
+        <option>União Estável</option>
+      </select>
+      <label for="dataNascimento">Data de Nascimento <span class="required">*</span></label>
+      <input type="text" id="dataNascimento" name="dataNascimento" placeholder="Data de Nascimento do Cliente Ex: 00/00/0000" required>
+      <label for="profissao">Profissão <span class="required">*</span></label>
+      <input type="text" id="profissao" name="profissao" placeholder="Profissão do Cliente" required>
+      <label for="contato">Contato <span class="required">*</span></label>
+      <input type="text" id="contato" name="contato" placeholder="Numero de Telefone do cliente" required>
+      <label for="email">E-mail <span class="required">*</span></label>
+      <input type="email" id="email" name="email" placeholder="E-mail do Cliente" required>
+      <label for="endereco">Endereço <span class="required">*</span></label>
+      <input type="text" id="endereco" name="endereco" placeholder="Rua" required>
+      <label for="numeroResidencia">Numero da Residência <span class="required">*</span></label>
+      <input type="text" id="numeroResidencia" name="numeroResidencia" placeholder="Numero da Residência" required>
+      <label for="bairro">Bairro <span class="required">*</span></label>
+      <input type="text" id="bairro" name="bairro" placeholder="Bairro" required>
+      <label for="cidade">Cidade <span class="required">*</span></label>
+      <input type="text" id="cidade" name="cidade" placeholder="Cidade" required>
+      <label for="estado">Estado <span class="required">*</span></label>
+      <select id="estado" name="estado" required>
+        <option value="">Selecione</option>
+        <option>CE</option>
+      </select>
+      <label for="cep">CEP <span class="required">*</span></label>
+      <input type="text" id="cep" name="cep" placeholder="Cep do Cliente" required>
+      <div class="card" style="background: var(--color-test-notice-bg); border: 1px solid var(--color-test-notice-border); color: var(--color-html-text);">
+        <strong><span style="color: var(--color-primary);">DADOS DO PROJETO</span></strong>
+      </div>
+      <label for="proposta">Proposta <span class="required">*</span></label>
+      <input type="text" id="proposta" name="proposta" placeholder="Numero da proposta" required>
+      <label for="modulos">Módulos <span class="required">*</span></label>
+      <input type="text" id="modulos" name="modulos" placeholder="Modelo das Placas" required>
+      <label for="quantidade">Quantidade <span class="required">*</span></label>
+      <input type="number" id="quantidade" name="quantidade" placeholder="Quantidade de Placas (somente números)" required>
+      <label for="inversor">Inversor <span class="required">*</span></label>
+      <input type="text" id="inversor" name="inversor" placeholder="Modelo de Inversor" required>
+      <label for="quantidadeInversor">Quantidade Inversor <span class="required">*</span></label>
+      <input type="number" id="quantidadeInversor" name="quantidadeInversor" placeholder="Quantidade de Inversor (SOMENTE NÚMEROS) Ex: 12" required>
+      <label for="potencia">Potência <span class="required">*</span></label>
+      <input type="text" id="potencia" name="potencia" placeholder="Potência do Projeto (SOMENTE NÚMEROS) ex: 12,5" required>
+      <label for="valor">Valor <span class="required">*</span></label>
+      <input type="number" id="valor" name="valor" placeholder="Valor do projeto (somente números) ex: 33450" required>
+      <label for="pagamento">Pagamento <span class="required">*</span></label>
+      <textarea id="pagamento" name="pagamento" placeholder="Forma de Pagamento (Escrever corretamente)" required></textarea>
+      <label for="entrega">Entrega <span class="required">*</span></label>
+      <select id="entrega" name="entrega" required>
+        <option value="">Selecione</option>
+        <option>90 dias (Noventa dias)</option>
+        <option>60 dias (sessenta dias)</option>
+      </select>
+      <label for="tipoTelhado">Tipo de Telhado</label>
+      <select id="tipoTelhado" name="tipoTelhado">
+        <option value="">Selecione</option>
+        <option>CERÂMICO</option>
+        <option>SOLO</option>
+        <option>LAJE</option>
+        <option>CARPORT</option>
+        <option>METÁLICO</option>
+        <option>FIBROCIMENTO</option>
+      </select>
+      <div class="card" style="background: var(--color-test-notice-bg); border: 1px solid var(--color-test-notice-border); color: var(--color-html-text);">
+        <span style="color: var(--color-primary); font-weight: bold; display: inline-block;">Observação sobre a entrega:</span><br>
+        90 dias para usinas de investimento.<br>
+        60 dias para residenciais e comerciais.<br>
+      </div>
+      <div class="card" style="background: var(--color-test-notice-bg); border: 1px solid var(--color-test-notice-border); color: var(--color-html-text);">
+        <strong><span style="color: var(--color-primary);">Anexos</span></strong>
+      </div>
+      <label for="anexo">Enviar arquivos zipados em um só <span class="required">*</span></label>
+      <input type="file" id="anexo" name="anexo" accept=".zip" required>
+      <label for="vendedor">Vendedor <span class="required">*</span></label>
+      <select id="vendedor" name="vendedor" required>
+        <option value="">Selecione</option>
+        <option>Ildernando</option>
+        <option>Brasil</option>
+        <option>Marcio Gomes</option>
+        <option>Lorena</option>
+        <option>Silvio</option>
+        <option>Marcone</option>
+        <option>Daniel</option>
+        <option>Marco</option>
+        <option>Leticia</option>
+        <option>Cesar</option>
+        <option>Ivonilson</option>
+        <option>Emanuelle</option>
+        <option>Rafael</option>
+        <option>Stalin</option>
+        <option>Jean</option>
+      </select>
+      <label for="observacao">Observação</label>
+      <textarea id="observacao" name="observacao" placeholder="Se possui rateio, Troca de titularidade ou qualquer apontamento extra"></textarea>
+      <div style="text-align:center; margin-top:2em; color: var(--color-primary);">
+        by: Matheus Oliveira
+      </div>
+      <div id="formError" class="error hidden"></div>
+      <button type="submit" class="submit-btn">Enviar Contrato</button>
+    </form>
+  </div>
+  <script>
+    // Exibe campos de PJ apenas se selecionado
+    document.getElementById('tipoCliente').addEventListener('change', function() {
+      var camposPJ = document.getElementById('camposPJ');
+      if (this.value === 'Pessoa Juridica') {
+        camposPJ.classList.remove('hidden');
+      } else {
+        camposPJ.classList.add('hidden');
+        // Limpa campos PJ se não for PJ
+        document.getElementById('representante').value = '';
+        document.getElementById('cpfCnpjRepresentante').value = '';
+        document.getElementById('localUsina').value = '';
+      }
+    });
+
+    // Submissão do formulário
+    document.getElementById('energyForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      var form = e.target;
+      var formData = new FormData(form);
+      var errorDiv = document.getElementById('formError');
+      errorDiv.classList.add('hidden');
+      errorDiv.textContent = '';
+      // Substitua pela URL do seu webhook n8n
+      var webhookUrl = 'COLE_AQUI_A_URL_DO_SEU_WEBHOOK_N8N';
+      try {
+        var response = await fetch(webhookUrl, {
+          method: 'POST',
+          body: formData
+        });
+        if (response.ok) {
+          alert('Formulário enviado com sucesso!');
+          form.reset();
+          document.getElementById('camposPJ').classList.add('hidden');
+        } else {
+          errorDiv.textContent = 'Erro ao enviar formulário. Tente novamente.';
+          errorDiv.classList.remove('hidden');
+        }
+      } catch (err) {
+        errorDiv.textContent = 'Erro de conexão. Tente novamente.';
+        errorDiv.classList.remove('hidden');
+      }
+    });
+  </script>
+</body>
+</html>
